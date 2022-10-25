@@ -18,7 +18,7 @@ export default function App() {
   }, []);
 
   useEffect(() => {
-    progress.value = withTiming(0, {duration: 5000});
+    progress.value = withTiming(0, {duration: 5000});//error
     // scale.value = withTiming()
   }, []);
 
