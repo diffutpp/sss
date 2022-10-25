@@ -1,25 +1,29 @@
 import { StatusBar } from "expo-status-bar";
 import { useEffect } from "react";
-import { Animated, StyleSheet, Text, View } from "react-native";
-import { useSharedValue, useAnimatedStyle } from "react-native-reanimated";
+import { StyleSheet, Text, View } from "react-native";
+import {
+  useSharedValue,
+  useAnimatedStyle,
+  withTiming,
+} from "react-native-reanimated";
+import Animated from "react-native-reanimated";
 
 const SIZE = 100.0;
 
-
 export default function App() {
   const progress = useSharedValue(1);
-  // const scale=useSharedValue(1);
+  const scale = useSharedValue(1);
 
   const reanimatedStyle = useAnimatedStyle(() => {
     return {
       opacity: progress.value,
-      transform:[{scale:scale.value}],
+      transform: [{ scale: scale.value }],
     };
   }, []);
 
   useEffect(() => {
-    progress.value = withTiming(0, {duration: 5000});//error
-    // scale.value = withTiming()
+    progress.value = withTiming(0, { duration: 5000 }); //error
+    scale.value = withTiming(2);
   }, []);
 
   return (
