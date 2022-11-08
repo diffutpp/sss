@@ -5,6 +5,7 @@ import {
   useSharedValue,
   useAnimatedStyle,
   withTiming,
+  withSpring,
 } from "react-native-reanimated";
 import Animated from "react-native-reanimated";
 
@@ -12,18 +13,19 @@ const SIZE = 100.0;
 
 export default function App() {
   const progress = useSharedValue(1);
-  const scale = useSharedValue(1);
+  const scale = useSharedValue(2);
 
   const reanimatedStyle = useAnimatedStyle(() => {
     return {
       opacity: progress.value,
+      borderRadius: progress.value * SIZE,
       transform: [{ scale: scale.value }],
     };
   }, []);
 
   useEffect(() => {
-    progress.value = withTiming(0, { duration: 5000 }); //error
-    scale.value = withTiming(2);
+    progress.value = withTiming(0.5); //error
+    scale.value = withSpring(2);
   }, []);
 
   return (
